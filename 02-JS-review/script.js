@@ -190,3 +190,26 @@ summary;
 const pagesRange = pages > 1000 ? 'Over a thousand' : 'Less than a thousand';
 pagesRange;
 console.log(`The book has ${pagesRange.toLowerCase()} pages.`);
+
+console.log(true && 'Some string');
+console.log(false && 'Some string');
+console.log(hasMovieAdaptation && 'This book has a movie.');
+
+// Falsy: 0, '', null, undifined
+console.log('Kazy' && 'Some strigs.');
+console.log(0 && 'Some strigs.');
+
+console.log(true || 'Some string');
+console.log(false || 'Some string');
+
+console.log(book.translations.spanish);
+
+const spanishTranslation = book.translations.spanish || 'Not translated';
+spanishTranslation;
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || 'No data';
+countWrong;
+
+const count = book.reviews.librarything.reviewsCount ?? 'no data';
+count;
