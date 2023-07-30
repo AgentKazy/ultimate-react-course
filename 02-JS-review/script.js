@@ -300,7 +300,7 @@ console.log('Kazy');
 */
 
 // Async/Await
-async function getTodos() {
+/* async function getTodos() {
   const res = await fetch('https://jsonplaceholder.typicode.com/todos/');
   const data = await res.json();
   console.log(data);
@@ -310,11 +310,13 @@ async function getTodos() {
 
 const todos = getTodos();
 
-console.log(todos);
-console.log('Kazy');
+console.log(todos); // Prints "Promise" because that's the initial state of a promise, it's not resolved yet. */
 
-/* 
-const getTodosArr = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/todos/');
+getTodos = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/');
+  const data = await res.json();
+  console.log(data);
 };
- */
+
+getTodos();
+console.log('Kazy');
