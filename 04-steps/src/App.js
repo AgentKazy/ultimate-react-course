@@ -7,19 +7,28 @@ const messages = [
 ];
 
 export default function App() {
+  return (
+    <div>
+      <Steps />
+      <Steps />
+    </div>
+  );
+}
+
+function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
 
   // const [test, setTest] = useState({ name: 'Kazy' });
 
   const handlePrevious = () => {
-    if (step > 1) setStep((s) => s - 1);
+    if (step > 1) setStep((currStep) => currStep - 1);
   };
 
   const handleNext = () => {
     if (step < 3) {
-      setStep((s) => s + 1);
-      // setStep((s) => s + 1);
+      setStep((currStep) => currStep + 1);
+      // setStep((currStep) => currStep + 1);
     }
 
     // BAD PRACTICE
@@ -28,7 +37,7 @@ export default function App() {
   };
 
   return (
-    <>
+    <div>
       <button className="close" onClick={() => setIsOpen((is) => !is)}>
         &times;
       </button>
@@ -62,6 +71,6 @@ export default function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
