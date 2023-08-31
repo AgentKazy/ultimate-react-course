@@ -8,3 +8,8 @@ Contém a informação necessária para criar elementos DOM.
 Elementos DOM são a representação final das instances no browser.
 
 Os React Elements NÃO são rendered (renderizados) no DOM, estes só existem na React APP e são apenas convertidos em elementos DOM quando são "pintados" no ecrã neste último passo.
+
+------------
+
+A Symbol cannot come from an API call, they cannot be transmited via JSON.
+
