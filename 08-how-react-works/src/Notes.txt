@@ -1,0 +1,10 @@
+Descrição de um bocado da UI. Componente é uma função que resulta em elementos de React (escritos em JSX). É como uma planta ou um template que é usado em Component instances.
+
+Intances são criadas quando se usa os componentes, é a manifestação de um componente (que tem os próprios States e Props).
+
+Cada Component Instance resulta em um ou mais elementos de React (React Elements). JSX -> React.createElement() -> React Element (resultado de usar um componente no nosso código).
+Contém a informação necessária para criar elementos DOM.
+
+Elementos DOM são a representação final das instances no browser.
+
+Os React Elements NÃO são rendered (renderizados) no DOM, estes só existem na React APP e são apenas convertidos em elementos DOM quando são "pintados" no ecrã neste último passo.
