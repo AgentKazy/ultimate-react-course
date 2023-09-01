@@ -13,3 +13,17 @@ Os React Elements NÃO são rendered (renderizados) no DOM, estes só existem na
 
 A Symbol cannot come from an API call, they cannot be transmited via JSON.
 
+------------
+
+State changes trigger renders. >
+React calls component functions and figures out how DOM should be updated. >
+RENDER PHASE: Rendering is NOT updating the DOM (or displaying elements on the screen). Rendering only happens internally inside React, it does not produce visual changes. >
+COMMIT PHASE: React actually writes to the DOM (update, insert, delete elements). >
+Browser paint.
+
+[1] Render is triggered
+#1: Initial render of the app
+#2: State is updated (re-render)
+
+>> The render process is triggered for the entire app.
+(In practice, it looks like React only re-renders the component where the state updated.)
