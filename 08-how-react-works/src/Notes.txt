@@ -88,3 +88,14 @@ Two different situations that need to be considered:
 
 2. Same position, same element
 -If after a render, at a certain positon in the tree, a DOM element or React element (component instance) remains the same as before, the element will be kept in the DOM, including state. Props can change, but not the type. New props/attributes are passed if they changed between renders, but the element remains the same. 
+
+------------
+131. The Key Prop
+- Special prop we use to tell the diffing algorithm that an element is unique
+- Allows React to distinguish between multiple instances of the same component type
+- When a key stays the same across render, the element will be kept in the DOM (even if the position in the tree changes)
+  > Using keys in lists
+- When a key changes between renders, the element will be destroyed and a new one will be created (even if the position in the tree is the same as before)
+  > Using keys to reset state
+
+ALWAYS USE KEYS!
