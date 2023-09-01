@@ -14,6 +14,7 @@ Os React Elements NÃO são rendered (renderizados) no DOM, estes só existem na
 A Symbol cannot come from an API call, they cannot be transmited via JSON.
 
 ------------
+126.
 
 State changes trigger renders. >
 React calls component functions and figures out how DOM should be updated. >
@@ -27,3 +28,37 @@ Browser paint.
 
 >> The render process is triggered for the entire app.
 (In practice, it looks like React only re-renders the component where the state updated.)
+
+------------
+127. The Render Phase
+
+NOT TRUE #1: Rendering is updating the screen/DOM (FALSE)
+NOT TRUE #2: React completely discards old view (DOM) on re-render (FALSE)
+
+><><><><><><
+
+React takes the Component instances that triggered re-render to render them (call corresponding component functions) > Creates updated React elements >
+Make up the "virtual DOM"
+
+1. Initial Render: whole component tree and transform into a REACT ELEMENT TREE ("virtual DOM")
+- Virtual DOM: a tree of all React elements created from all instances in the component tree.
+- Cheap and fast to create multiple trees.
+- Nothing to do with "shadow DOM"
+
+2. Re-Renders: if a component's state is updated, React creates a new React element tree, a new virtual DOM.
+- Rendering a component will cause all of its child components to be rendered as well (even props changed or not). > Necessary because React doesn't know wheter children will be affected.
+
+It's not the entire DOM that gets updated, only the virtual DOM.
+
+The new Virtual DOM will be reconciled with the current Fiber (reconciler) tree (that exists before the state update) > Updated Fiber tree that will be output to the DOM.
+
+Why not update the entier DOM on state changes?
+- NOT cheap and fast. Inefficient and wasteful: writing to the DOM is SLOW.
+- Only a small part of the DOM needs to be updated.
+- React reuses as much of the existing DOM as possible. How? >
+Reconciliation: Deciding which DOM elements actually need to be inserted, deleted, or updated, in order to reflect the latest state changes.
+(Fiber is the "engine or React"). Due to this reconciler, we never touch the DOM directly.
+
+In the initial render, Fiber takes the entire React Element Tree (Virtual DOM) and turns into Fiber Tree. For each component instance and DOM element in the app, there is a "fiber". Fibers are NOT re-created on every render, they are created on the initial render, it's simply mutated on future reconciliation steps. Keeps track of current state, props, side effects, used hooks... Also contains a queue of work. Instead of a parent/child relationship, each first child has a link to its parent and all the other children have a link to the previous sibling. Fiber ("Unit of work"): Work can be performed asynchronously. This means rendering can be split into chunks, tasks can have prioritizations and work can be paused, reused, or thrown away. Pause/resume work helps not blocking JS engine.
+
+Fiber walks through the entire step by step and analyzes what needs to change the current Fiber tree and the new Fiber tree based on the new Virtual DOM. This analysis is called Diffing. When the process is over, all the DOM mutations are place on a list called the list of effects, which will be used on the commit phase to mutate the DOM.
