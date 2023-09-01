@@ -75,3 +75,16 @@ RECAP:
 2. Render phase: Updated React Elements > New Virtual DOM + Current Fiber tree > Reconciliation (Reuse as much of the DOM as possible, by finding the smallets number of DOM updates that reflect the latest state update on the screen)  + Diffing (step by step compares the elements in the new virtual DOM with the elements of the current fiber tree, to see what changed) > Updated Fibre tree > List of DOM updates
 3. Commit phase: Updated DOM
 4. Browser paint: Updated UI on screen
+
+------------
+129. Diffing
+Two fundamental assumptions:
+[1]: Two elements of different types will produce different trees.
+[2]: Elements with a stable key prop will stay the same across renders.
+
+Two different situations that need to be considered:
+1. Same position, different element:
+-Changing the type of an element (div to header). React assumes the entire sub-tree is no longer valid. Old components are destroyed and removed from DOM, including state. Resets state. Same situation for React elements (component instance).
+
+2. Same position, same element
+-If after a render, at a certain positon in the tree, a DOM element or React element (component instance) remains the same as before, the element will be kept in the DOM, including state. Props can change, but not the type. New props/attributes are passed if they changed between renders, but the element remains the same. 
