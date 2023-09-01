@@ -62,3 +62,16 @@ Reconciliation: Deciding which DOM elements actually need to be inserted, delete
 In the initial render, Fiber takes the entire React Element Tree (Virtual DOM) and turns into Fiber Tree. For each component instance and DOM element in the app, there is a "fiber". Fibers are NOT re-created on every render, they are created on the initial render, it's simply mutated on future reconciliation steps. Keeps track of current state, props, side effects, used hooks... Also contains a queue of work. Instead of a parent/child relationship, each first child has a link to its parent and all the other children have a link to the previous sibling. Fiber ("Unit of work"): Work can be performed asynchronously. This means rendering can be split into chunks, tasks can have prioritizations and work can be paused, reused, or thrown away. Pause/resume work helps not blocking JS engine.
 
 Fiber walks through the entire step by step and analyzes what needs to change the current Fiber tree and the new Fiber tree based on the new Virtual DOM. This analysis is called Diffing. When the process is over, all the DOM mutations are place on a list called the list of effects, which will be used on the commit phase to mutate the DOM.
+
+------------
+128. The Commit Phase
+> React goes through the effect list and writes to the DOM: insertions, deletions, and updates. Commiting is synchronous, the DOM is updated in one go, can't be interrupted. Important so that the DOM never shows partial results, ensuring a consistent UI. The workInProgress fiber tree becomes the current tree. The library that ensures the commiting is the ReactDOM ("renderer"), React is not responsible with touching the DOM.
+
+> Browser paint: Updated UI on the screen when the DOM changes.
+
+RECAP:
+
+1. Trigger: Only happens on initial render and state updates
+2. Render phase: Updated React Elements > New Virtual DOM + Current Fiber tree > Reconciliation (Reuse as much of the DOM as possible, by finding the smallets number of DOM updates that reflect the latest state update on the screen)  + Diffing (step by step compares the elements in the new virtual DOM with the elements of the current fiber tree, to see what changed) > Updated Fibre tree > List of DOM updates
+3. Commit phase: Updated DOM
+4. Browser paint: Updated UI on screen
