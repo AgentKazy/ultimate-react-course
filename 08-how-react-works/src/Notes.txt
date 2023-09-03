@@ -133,3 +133,28 @@ Side effects are allows (and encouraged) in event handler functions!
 All pieces of state are updated in one go (batched) > React will trigger one single render + commit > Performance optimization, no wasted renders
 
 Updated state variables are not immediately available after setState call, but only after the re-render. This also applies when only one state variable is updated.
+
+------------
+139. Section Summary: Practical Takeaways
+
+Component is a blueprint for a piece of UI that will exist on the screen. When we use a component, React creates a component instance (will have props, state and more). A cmponent instance when renderes, will return a React Element.
+
+Rendering means calling component functions and calculating what DOM elements need to be inserted, deleted or updated. Nothing to do with writing to the DOM. Each time a component instance is rendered and re-rendered, the function is called again.
+
+Only initial app render and state updates can cause a render (happens for the entire application). When a component instance gets re-rendered, all its children will get re-rendered as well.
+
+Diffing is how React decides which DOM elements need to be added or modified. If a certain React element stays at the same position in the element tree, the corresponding DOM element and component state will stay the same. If the element changed to a different position, or if it's a different element type, the DOM element and state will be destroyed (reset).
+
+We can influende the diffing algorithm by giving element a key prop. If a key stays the same across renders, the element is kept in the DOM. When we change keys between renders, the DOM element will be destroyed and rebuilt. We use this trick to reset state.
+
+Never declare a new component inside another component. Always declare new components at the top level of a file.
+
+The logic that produces JSX output for a component instance (render logic) is not allowed to produce any side effects. Side effects are allowed in event handlers and useEffect.
+
+The DOM is updated in the commit phase, not by React, but by a "renderer" called ReactDOM.
+
+Multiple state updates inside an event handler function are batched, they all happen at once, causing only one re-render. This means we can not access a state variable immediately after updating it.
+
+When using events in event handlers, we get access to a synthetic event object, so that events work the same way across all browsers.
+
+React is a library, not a framework. This means we can assemble your app using your favorite third-party libraries. The downside is you need to find and learn all these additional libraries.
