@@ -158,3 +158,18 @@ Multiple state updates inside an event handler function are batched, they all ha
 When using events in event handlers, we get access to a synthetic event object, so that events work the same way across all browsers.
 
 React is a library, not a framework. This means we can assemble your app using your favorite third-party libraries. The downside is you need to find and learn all these additional libraries.
+
+------------
+141. The Component Lifecycle
+
+1. Mount/Initial Render: When the component is rendered for the very first time. Fresh state and props are created.
+
+2. Re-Render (optional) an unlimited number of times. When?
+- State changes
+- Props change
+- Parent re-renders
+- Context changes
+
+3. Unmount
+- Component instance is destroyed and removed
+- State and props are destroyed
