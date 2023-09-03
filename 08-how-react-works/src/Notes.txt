@@ -99,3 +99,30 @@ Two different situations that need to be considered:
   > Using keys to reset state
 
 ALWAYS USE KEYS!
+
+------------
+134. Rules for Render Logic: Pure Components
+
+1. RENDER LOGIC
+  Code that lives at the top level of the component function. Describes exactly how the component will be displayed on the screen. Can be found inside functions. Render logic is all the code that is executed as soon as the component is rendered.
+
+2. EVENT HANDLER FUNCTIONS
+  Executed as a consequence of the event that the handler is listening to. Code that changes and manipulates the application.
+
+REFRESHER
+>>>>>>>>>
+Side effect: dependency on or modification of any data outsite the function scope.
+Pure function: a function that has no side effects. Does not change any variable outside its scope and given the same input, returns the same output.
+Impure function: unpredictable outputs (for example, with dates).
+<<<<<<<<<<
+
+When it comes to render logic, components must be pure: given the same props, a component should always return the same JSX.
+Render logic must produce no side effects: no interactions with the "outside world" of its scope. It must not:
+  - Perform network requests (API calls)
+  - Start timers
+  - Directly use the DOM API
+  - Mutate objects or variables outsite of the function scope
+  - Update state (or refs): this will create an infinite loop
+
+Side effects are allows (and encouraged) in event handler functions!
+>>>useEffect hook
