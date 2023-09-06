@@ -1,0 +1,16 @@
+148. The useEffect Dependency Array
+
+An effect runs after every render, we can prevent that by passing a dependency array as a second argument. Without the array, React doesn't know when to run the effect. Each time the dependencies changes, the effect will be executed again.
+
+Effect dependencies are state variables and props used inside the effect, and each of them must be included in the dependency array.
+
+useEffect is like an event listener that is listening for one dependency to change. Whenever a dependency changes, it will execute the effect again.
+
+- If an effect has X, Y and Z dependencies, it will sync with X, Y and Z and will run on mount and re-renders triggered by updating X, Y and Z.
+
+- If an effect has an empty dependency array, it synchronizes with no state/props and runs only on mount (initial render).
+
+- If an effect as no dependency array (not even an empty array), it synchronizes with EVERYTHING and runs on every render.
+
+>> When are effects executed?
+Mount (initial render) > Commit > Browser paint > EFFECT (If an effect sets state, an additional render will be required) > prop 'title' changes > Re-render > Commit > Layout effect (very rare type of effect, usage is discouraged) > Browser paint > [?] > Effect > Unmount > [?]

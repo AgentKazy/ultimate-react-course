@@ -58,7 +58,7 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const query = "afdgwe4g";
+  const query = "Hobbit";
 
   useEffect(function () {
     async function fetchMovies() {
