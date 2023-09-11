@@ -13,4 +13,16 @@ useEffect is like an event listener that is listening for one dependency to chan
 - If an effect as no dependency array (not even an empty array), it synchronizes with EVERYTHING and runs on every render.
 
 >> When are effects executed?
-Mount (initial render) > Commit > Browser paint > EFFECT (If an effect sets state, an additional render will be required) > prop 'title' changes > Re-render > Commit > Layout effect (very rare type of effect, usage is discouraged) > Browser paint > [?] > Effect > Unmount > [?]
+Mount (initial render) > Commit > Browser paint > EFFECT (If an effect sets state, an additional render will be required) > prop 'title' changes > Re-render > Commit > Layout effect (very rare type of effect, usage is discouraged) > Browser paint > [?1] > Effect > Unmount > [?2]
+
+>>:-----------------------------------------------:<<
+
+154. The useEffect Cleanup Function
+[?1] & [?2]: Clean up function
+
+- Function that we can return from an effect (optional)
+- Runs on two different occasions:
+  > Before the effect is executed again (cleanup results of previous side effect)
+  > After a component has unmounted (reset the side effect we created if necessary)
+- Necessary whenever a side effect keeps happening after the component has re-rendered or unmounted
+- Each effect should only do one thing. Use one useEffect hook for each side effect. Makes effects easier to clean up.
