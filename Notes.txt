@@ -47,3 +47,13 @@ HOOKS RELY ON CALL ORDER
 React Element Tree --(on initial render)--> Fiber Tree ~~~> Fiber (Props .... List of Hooks)
   > A list of Hooks is built based on hooks call order. If a hooks is called inside a conditional and that condition changes, that hook will no longer exist on the list, the top hook on the list will point to an non existant hook and the linked list is broken, as there is no link to the following hooks after the removed hook. React won't be able to keep track of the list of hooks to call.
   > A linked list of hooks is necessary because it's the simplest way to identify hooks. The order in which the hook is called uniquely identifies the hook.
+
+>:---------------------------------:<
+164. useState Summary
+1. Creating state
+  > Simple
+  > Based on a (call)function (lazy evaluation) (Only called in the initial render, must be pure and accept no arguments)
+  
+2. Update state
+  > Simple
+  > Based on the current state (setCount((current) => current + 1);)
