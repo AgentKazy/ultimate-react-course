@@ -73,4 +73,4 @@ Do NOT write or read .current in render logic (like state)
 > Persists across renders
 > Updating does not cause re-renders
 > Aren't immutable
-> Updates are not asynchronous, we can read data right after updating it
+> Updates are not asynchronous, we can read a new .current property immediately after updating it
