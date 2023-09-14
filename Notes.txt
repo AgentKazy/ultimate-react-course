@@ -1,0 +1,49 @@
+160. React Hooks and Their Rules
+
+- React hooks are special functions that are built into React and allow us to hook into React's internal mechanisms:
+  -> Creating and accessing state from the Fiber tree
+  -> Registering side effects in the Fiber tree
+  -> Manual DOM selections
+  -> Many more.
+- Always start with 'use' (useState, useEffect, etc.)
+- Enable easy reusing of non-visual logic: we can compose multiple hooks into our own custom hooks
+- Give funciton components the ability to own state and run side effects at different lifecycle points (before v16.8 only available in class components)
+
+OVERVIEW of all built-in hooks (as of React v18.x):
+(> Learned)
+(- Will learn)
+(Will not learn)
+
+Most used hooks:
+> useState
+> useEffect
+- useReducer
+- useContext
+
+Less used hooks:
+- useRef
+- useCallback
+- useMemo
+- useTransition
+- useDeferredValue
+useLayoutEffect
+useDebugValue
+useImperativeHandle
+useId
+
+Only for libraries:
+useSyncExternalStore
+useInsertionEffect
+
+THE RULES OF HOOKS
+1. Can only be called at the top level:
+  > Do NOT call hooks inside contidionals, loops, nested functions, or after an early return
+  > This is necessary to ensure that hooks are called in the same order (hooks rely on this)
+2. Only call hooks from React functions:
+  > Only call hooks inside a function component or a custom hooks
+(These rules are automatically enforced by React's ESLint rules)
+
+HOOKS RELY ON CALL ORDER
+React Element Tree --(on initial render)--> Fiber Tree ~~~> Fiber (Props .... List of Hooks)
+  > A list of Hooks is built based on hooks call order. If a hooks is called inside a conditional and that condition changes, that hook will no longer exist on the list, the top hook on the list will point to an non existant hook and the linked list is broken, as there is no link to the following hooks after the removed hook. React won't be able to keep track of the list of hooks to call.
+  > A linked list of hooks is necessary because it's the simplest way to identify hooks. The order in which the hook is called uniquely identifies the hook.
