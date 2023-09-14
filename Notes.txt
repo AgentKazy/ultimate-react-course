@@ -53,7 +53,24 @@ React Element Tree --(on initial render)--> Fiber Tree ~~~> Fiber (Props .... Li
 1. Creating state
   > Simple
   > Based on a (call)function (lazy evaluation) (Only called in the initial render, must be pure and accept no arguments)
-  
+
 2. Update state
   > Simple
   > Based on the current state (setCount((current) => current + 1);)
+
+>:---------------------------------:<
+166. Introducing Another Hook: useRef
+What is a Ref? It stands for reference and creates a "box" (object) with a mutable .current property that is persisted across renders.
+
+Two big use cases:
+  1. Creating a variable that stays the same between renders (e.g. previous state, setTimeout id, etc.)
+  2. Selecting and storing DOM elements
+
+Refs are for data that is NOT rendered: usually only appear in event handlers or effects, not in JSX (otherwise use state)
+
+Do NOT write or read .current in render logic (like state)
+
+> Persists across renders
+> Updating does not cause re-renders
+> Aren't immutable
+> Updates are not asynchronous, we can read data right after updating it
