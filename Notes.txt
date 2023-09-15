@@ -74,3 +74,22 @@ Do NOT write or read .current in render logic (like state)
 > Updating does not cause re-renders
 > Aren't immutable
 > Updates are not asynchronous, we can read a new .current property immediately after updating it
+
+>:---------------------------------:<
+169. What are Custom Hooks? When to Create One?
+
+There are 2 types of things that can be reused in React:
+
+1. UI
+  > Component
+
+2. Logic
+  > Does the logic contain any hooks?
+    -- NO --> Regular function
+    -- YES -> Custom hook
+
+Custom hooks allow us to reuse non-visual logic (stateful logic) in multiple components. (Or any logic that contains one or more React hooks.)
+One custom hook should have ONE purpose, to make it reusable and portable (even across multiple projects). Rules of hooks apply to custom hooks too.
+It's a JS function, that unlike components, can receive and return any data (usually [] or {}).
+Needs to use one or more hooks.
+Function name needs to start with 'use'.
