@@ -93,3 +93,22 @@ One custom hook should have ONE purpose, to make it reusable and portable (even 
 It's a JS function, that unlike components, can receive and return any data (usually [] or {}).
 Needs to use one or more hooks.
 Function name needs to start with 'use'.
+
+>:---------------------------------:<
+189. Managing State With useReducer
+
+State management with useState is not enough in certain situations:
+  1. When components have a lot of state variables and state updates, spread across many event handlers all over the component.
+  2. When multiple state updates need to happen at the same time (as a reaction to the same event, like "starting a game", set score to 0, set an isPlaying status and start a timer)
+  3. When updating one piece of state depends on one or multiple other pieces of state
+
+  In all these situations, useReducer can be of great help
+
+  STATE WITH useReducer:
+    const [state, dispatch] = useReducer(reducer, initialState);
+    > An alternative way of setting state, ideal for complex state and related pieces of state
+    > Stores related pieces of state in a state OBJECT that is returned from the useReducer hook
+    useReducer needs [reducer:] function containing all logic to update state. Decouples state logic from component into a central place
+    > [reducer:] pure function (no side effects!) that takes current state and action, and returns the next state
+    > [action:] object that describes how to update state
+    > [dispatch:] function to trigger state updates, by "sending" actions from event handlers to the reducer
