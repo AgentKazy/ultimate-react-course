@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Option({ question, dispatch, answer }) {
   const hasAnswered = answer !== null;
 
