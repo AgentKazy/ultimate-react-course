@@ -135,3 +135,22 @@ When to use useReducer?:
   -- YES --> useState
   -- NO ---> Do states frequently update together? -- YES --> Are you willing to implement slightly more complex code? -- NO ---> useState, -- YES --> useReducer
   -- NO ---> Over 3 or 4 pieces of related state, including objects? -- NO ---> Too many event handlers make components large of confusing? -- YES --> useReducer (-- NO --> useState)
+
+>:---------------------------------:<
+205. Routing and Single-Page Applications (SPAs)
+  > With routing, we match different URLs to different UI views (React components): routes
+  > This enables users to navigate between different applications screens, using the browser url
+  > Keeps the UI in sync with the current browser URL
+  > React routing --> ReactRouter
+  > Allows us to build Single-Page Applications (SPA)
+
+Single-Page Aplications (SPA)
+  > Application that is executed entirely on the client (browsers)
+  > Routes: different URLs correspond to different views (components)
+  > JavaScript (React) is used to update the page (DOM)
+  > *The page is never reloaded*
+  > Feels like a native app
+
+  1. User clicks router link
+  2. URL is changed
+  3. React component corresponding to the new URL is rendered
