@@ -154,3 +154,17 @@ Single-Page Aplications (SPA)
   1. User clicks router link
   2. URL is changed
   3. React component corresponding to the new URL is rendered
+
+>:---------------------------------:<
+208. Styling Options For React Applications
+React is unopinionated in regards of many common aspects of building web apps.
+
+> Styling:
+  STYLING OPTION -> WHERE? -> HOW? -> SCOPE -> BASED ON
+  1. Inline CSS -> JSX elements -> style prop -> JSX element (local) -> CSS
+  2. CSS or Sass file -> External file -> className prop -> Entire app (global, problematic) -> CSS
+  3. CSS Modules -> One external file per component -> className prop -> Component -> CSS
+  4. CSS-in-JS -> External file or component file -> Creates new component -> Component -> JavaScript
+  5. Utility-first CSS (ex: tailwindcss) -> JSX elements -> className prop -> JSX element -> CSS
+
+  Alternative to styling with CSS: UI libraries like MUI, Chakra UI, Mantine, etc.
