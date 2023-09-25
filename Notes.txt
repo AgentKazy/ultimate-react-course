@@ -177,3 +177,18 @@ React is unopinionated in regards of many common aspects of building web apps.
   2. Good way to 'pass' data from one page into the next page
   3. Makes it possible to bookmark and share the page with the exact UI state it had at the time
 
+>:---------------------------------:<
+2222. What is the Context API?
+
+Task: Passing state into multiple deeply nested child components
+  Solution 1: Passing props. PROBLEM: PROP DRILLING
+  Solution 2: Context API
+
+Context API:
+  > System to pass data throughout the app without manually passing props down the tree
+  > Allows us to "broadcast" global state to the entire app
+    1. Provider: gives all child components access to value (Top of the tree, App)
+    2. 'value': data that we want to make available (usually state and functions)
+    3. Consumers: all components that read the provided context value
+  
+  'value' is updated -> Providers notifies the consumers that the value changed and all consumers re-render
