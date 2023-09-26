@@ -178,7 +178,7 @@ React is unopinionated in regards of many common aspects of building web apps.
   3. Makes it possible to bookmark and share the page with the exact UI state it had at the time
 
 >:---------------------------------:<
-2222. What is the Context API?
+222. What is the Context API?
 
 Task: Passing state into multiple deeply nested child components
   Solution 1: Passing props. PROBLEM: PROP DRILLING
@@ -192,3 +192,50 @@ Context API:
     3. Consumers: all components that read the provided context value
   
   'value' is updated -> Providers notifies the consumers that the value changed and all consumers re-render
+
+>:---------------------------------:<
+226. Thinking In React: Advanced State Management
+
+Review: State management: Giving each piece of state the right home
+  > When to use state
+  > Types of state (accessibility): local vs. global
+
+This lecture:
+  > Types of state (domain): UI vs. remote
+  > Where to place each piece of state
+  > Tools to manage all types of state
+
+TYPES OF STATE:
+  1. State Accessibility
+  ("If this component was rendered twice, should a state update in one of them reflect in the other one?"): No, local. Yes, global.
+    > Local state
+      - Needed only by one of few components
+      - Only accessible in component and child components
+    > Global state
+      - Might be needed by many components
+      - Accessible to every component in the app
+
+  2. State Domain
+    > Remote state
+      - All app data loaded from a remote server (API)
+      - Usually asynchronous
+      - Needs re-fetching + updating
+    > UI state 
+      - Everything else
+      - Theme, list filters, form data, etc.
+      - Usually synchronous and stored in the app
+  
+  STATE PLACEMENT OPTIONS (Where to place state?):
+    >>> Type | Tools | Where to use?
+    > Local component: useState, useReducer, useRef | Local state
+    > Parent component: useState, useReducer, useRef | Lifting up state
+    > Context: Context API + useState or useReducer | Global state (preferably UI State)
+    > 3rd-party library: Redux, React Query, SWR, Zustand, etc. | Global state (remote or UI)
+    > URL: React Router | Global state, passing between pages
+    > Browser: Local storage, session storage, etc. | Storing data in user's browser
+
+  STATE MANAGEMENT TOOL OPTIONS
+    > Local + UI: useState; useReducer; useRef
+    > Local + Remote: fetch + useEffect + useState/useReducer (Mostly in small apps)
+    > Global + UI: Context API + useState/useReducer; Redux, Zustand, Recoil, etc.; React Router
+    > Global + Remote: Context API + useState/useReducer; Redux, Zustand, Recoil, etc.; Tools highly specialized in handling remote state: React Query, SWR, RTK Query
