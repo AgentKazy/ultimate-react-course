@@ -239,3 +239,27 @@ TYPES OF STATE:
     > Local + Remote: fetch + useEffect + useState/useReducer (Mostly in small apps)
     > Global + UI: Context API + useState/useReducer; Redux, Zustand, Recoil, etc.; React Router
     > Global + Remote: Context API + useState/useReducer; Redux, Zustand, Recoil, etc.; Tools highly specialized in handling remote state: React Query, SWR, RTK Query
+
+>:---------------------------------:<
+243. Performance Optimization and Wasted Renders
+  1. PREVENT WASTED RENDERS
+    > memo
+    > useMemo
+    > useCallback
+    > Passing elements as children or regular props
+  2. IMPROVE APP SPEED/RESPONSIVENESS
+    > useMemo
+    > useCallback
+    > useTransition
+  3. REDUCE BUNDLE SIZE
+    > Using fewer 3rd-party packages
+    > Code splitting and lazy loading
+
+  WHEN DOES A COMPONENT INSTANCE RE-RENDER?
+    > A component instance only gets re-rendered in 3 different situations:
+      1. State changes
+      2. Context changes
+      3. Parent re-renders
+    - A render does not mean that the DOM actually gets updated, it just means the component function gets called. But this can be an expensive operation
+    - A wasted render is a render that didn't produce any change in the DOM (Usually not a problem, as React is very fast)
+    - Only a problem when the happen too frequently or when the component is very slow
