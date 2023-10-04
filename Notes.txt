@@ -263,3 +263,21 @@ TYPES OF STATE:
     - A render does not mean that the DOM actually gets updated, it just means the component function gets called. But this can be an expensive operation
     - A wasted render is a render that didn't produce any change in the DOM (Usually not a problem, as React is very fast)
     - Only a problem when the happen too frequently or when the component is very slow
+
+>:---------------------------------:<
+246. Understanding memo
+  > Memoization: optimization technique that executes a pure function once, and saves the result in memory. If we try to execute the function again with the same arguments as before, the previously saved result will be returned, without executing the function again.
+    - Memoize components with `memo`
+    - Memoize objects with `useMemo`
+    - Memoize functions with `useCallback`
+
+    1. Prevent wasted renders
+    2. Improve app speed/responsiveness
+  
+  THE `memo` FUNCTION
+    > Used to screate a component that will not re-render when its parent re-renders, as long as the props stay the same between renders
+    > Only affects props! A memoized component will still re-render when its own state changes or when a context that it's subscribed to changes
+    > Only makes sense when the component is heavy (slow rendering), re-renders often and does so with the same props
+
+    - Regular behavior (no `memo`): Components re-render -> Child re-renders
+    - Memoized child with `memo`: Components re-render -> Same props -> Memoized child does NOT re-render. New props -> Memoized child re-renders
