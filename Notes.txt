@@ -281,3 +281,22 @@ TYPES OF STATE:
 
     - Regular behavior (no `memo`): Components re-render -> Child re-renders
     - Memoized child with `memo`: Components re-render -> Same props -> Memoized child does NOT re-render. New props -> Memoized child re-renders
+
+>:---------------------------------:<
+248. Understanding useMemo and useCallback
+  > In React, everything is re-created on every render (including objects and functions) ->
+    In JavaScript, two objects or functions that look the same, *are actually different* ({} != {}) ->
+    If objects or functions are passed as props, the child component will always see them as *new props on each re-render* ->
+    If props are different between re-renders, `memo` *will not work* -> (SOLUTION) ->
+    We need to memoize objects and functions, to make them stable (preserve) between re-renders (memoized {} == memoized {})
+
+  > TWO NEW HOOKS, useMemo and useCallback
+    - Used to memoize values (useMemo) and functions (useCallback) between renders
+    - Values passed into useMemo and useCallback will be stored in memory ("cached") and returned in subsequent re-renders, as long as dependencies ("inputs") stay the same
+    - useMemo and useCallback have a dependency array (like useEffect): whenever one dependency changes, the value will be re-created
+    - Only use them for one of the three use cases! V
+
+    THREE BIG USE CASES:
+      1. Memoizing props to prevent wasted renders (together with memo)
+      2. Memoizing values to avoid expensive re-calculations on every render
+      3. Memoizing values that are used in a dependency array of another hook
