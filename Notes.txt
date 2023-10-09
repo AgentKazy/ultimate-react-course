@@ -388,3 +388,55 @@ TYPES OF STATE:
     - When you have complete state with nested objects and arrays (because you can mutate state with Redux Toolkit)
 
   There is no right answer that fits every project. It all depends on the project needs.
+
+>:---------------------------------:<
+283. Application Planning
+  > How to plan and build a React application
+    1. Gather application requirements and features
+    2. Divide the application into pages
+      - Think about the overall and page-level UI
+      - Break the desired UI into components
+      - Design and build a static version (no state yet)
+    3. Divide the application into feature categories
+      - Think about state management + data flow
+    4. Decide on what libraries to use (technology decision)
+
+  > STEP 1: Project requirements from the business
+    - Very simple application, where users can order one or more pizzas from a menu
+    - Requires no user accounts and no login: users just input their name before using the app
+    - The pizza menu can change, so it should be loaded from an API (DONE on this project)
+    - Users can add multiple pizzas to a cart before ordering
+    - Ordering requires just the user's name, phone number, and address
+    - If possible, GPS location should be provided, to make delivery easier
+    - User's can mark their order as "priority" for an additional 20% of the cart price
+    - Orders are made by sending a POST request with the order data (user data + selected pizzas) to the API
+    - Payments are made on delivery, so no payment processing is necessary in the app
+    - Each order will get a unique ID that should be displayed, so the user can later look up their order based on the ID
+    - Users should be able to mark their order as "priority" order even after it has been placed
+  > STEP 2 + 3: Features + Pages
+    - Feature categories
+      1. User
+      2. Menu
+      3. Cart
+      4. Order
+      (All features can be placed into one of these. This is what the app will essentially be about)
+    
+    - Necessary pages
+      1. Homepage `/`
+      2. Pizza menu `/menu`
+      3. Cart `/cart`
+      4. Placing a new order `/order/new`
+      5. Looking up an order `/order/:orderID`
+
+  > STEP 3 + 4: State management + Technology decisions
+    - STATE "DOMAINS"/"SLICES"  ---> TYPES OF STATE
+      1. User ---> Global UI state (no accounts, so stays in app)
+      2. Menu ---> Global remote state (menu is fetched from API)
+      3. Cart ---> Global UI state (no need for API, just stored in app)
+      4. Order --> Global remote state (fecthed and submitted to API)
+
+    - Routing: React Router (The standard for React SPAs)
+    - Styling: TailwindCSS (Trendy way of styling applications that we want to learn)
+    - State management:
+      1. Remote: React Router ("render-as-you-fetch" instead of "fetch-on-render", a way to learn)
+      2. UI: Redux (State is fairly complex in this application, also an opportunity to learn more)
