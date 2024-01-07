@@ -16,7 +16,7 @@ function Counter({ children }) {
   );
 }
 
-// 3. Create the child components that will help implement the common task of the component
+// 3. Create the child components that will help implement the common tasks of the component
 function Count() {
   const { count } = useContext(CounterContext);
   return <span>{count}</span>;
@@ -28,20 +28,18 @@ function Label({ children }) {
 
 function Increase({ icon }) {
   const { increase } = useContext(CounterContext);
-
   return <button onClick={increase}>{icon}</button>;
 }
 
 function Decrease({ icon }) {
   const { decrease } = useContext(CounterContext);
-
   return <button onClick={decrease}>{icon}</button>;
 }
 
 // 4. Add the child components as properties to the parent component
-Counter.Count = Count;
 Counter.Label = Label;
 Counter.Increase = Increase;
 Counter.Decrease = Decrease;
+Counter.Count = Count;
 
 export default Counter;
