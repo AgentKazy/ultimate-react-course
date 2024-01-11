@@ -1,6 +1,6 @@
-import { PAGE_SIZE } from "../utils/constants";
 import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
+import { PAGE_SIZE } from "../utils/constants";
 
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
@@ -28,8 +28,8 @@ export async function getBookings({ filter, sortBy, page }) {
   const { data, error, count } = await query;
 
   if (error) {
-    console.log(error);
-    throw new Error("Bookings could not be loaded.");
+    console.error(error);
+    throw new Error("Bookings could not be loaded");
   }
 
   return { data, count };
