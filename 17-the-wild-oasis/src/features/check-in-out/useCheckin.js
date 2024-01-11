@@ -11,7 +11,7 @@ export function useCheckin() {
     mutationFn: (bookingId) =>
       updateBooking(bookingId, {
         status: "checked-in",
-        isPaid: false,
+        isPaid: true,
       }),
     onSuccess: (data) => {
       toast.success(`Booking #${data.id} successfully checked in`);
